@@ -54,7 +54,7 @@ Fraction Fraction::operator+( Fraction f1 ) {
 	int MCM = f2.MCM( f1.Denominator , Denominator ) ;
 
 	f2.Denominator = MCM ;
-	f2.Numerator = ((MCM/f1.Denominator)*f1.Numerator) + ((MCM/Denominator)*Numerator) ;
+	f2.Numerator = ((MCM/Denominator)*Numerator) + ((MCM/f1.Denominator)*f1.Numerator) ;
 
 
 	return f2 ;
@@ -67,8 +67,55 @@ Fraction Fraction::operator-(Fraction f1) {
 	int MCM = f2.MCM( f1.Denominator , Denominator ) ;
 
 	f2.Denominator = MCM ;
-	f2.Numerator = ((MCM/f1.Denominator)*f1.Numerator) - ((MCM/Denominator)*Numerator) ;
+	f2.Numerator = ((MCM/Denominator)*Numerator) - ((MCM/f1.Denominator)*f1.Numerator) ;
 
 	return f2 ;
+
+}
+
+Fraction Fraction::operator*(Fraction f1) {
+
+	Fraction f2( 1 , 1 ) ;
+
+	f2.Denominator = f1.Denominator * Denominator ;
+	f2.Numerator = f1.Numerator * Numerator ;
+
+	return f2 ;
+
+}
+
+Fraction Fraction::operator/(Fraction f1) {
+
+	Fraction f2( 1 , 1 ) ;
+
+	f2.Denominator = Denominator*f1.Numerator ;
+	f2.Numerator = Numerator*f1.Denominator ;
+
+	return f2 ;
+
+}
+
+Fraction Fraction::operator^( int n ) {
+
+	Fraction f2( 1 , 1 ) ;
+	int d = Denominator , num = Numerator ;
+
+	for ( int i = 1 ; i < n ; i++ ) {
+
+		d *= d ;
+		num *= num ;
+
+	}
+
+	f2.Denominator = d ;
+	f2.Numerator = num ;
+
+	return f2 ;
+
+}
+
+void Fraction::Print( ) {
+
+	cout << Numerator << "/" << Denominator << endl ;
 
 }

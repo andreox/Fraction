@@ -10,10 +10,19 @@ int main( int argc , char** argv ) {
 	Fraction f2( 2 , 3) ;
 
 	f1 = f1+f2 ;
-	cout << f1.Numerator << "/" << f1.Denominator << endl ;
+	f1.Print() ;
 
 	f1 = f1-f2 ;
-	cout << f1.Numerator << "/" << f1.Denominator << endl ;
+	f1.Print() ;
+
+	f1 = f1*f2 ;
+	f1.Print() ;
+
+	f1 = f1/f2 ;
+	f1.Print() ;
+
+	f1 = f1^3 ;
+	f1.Print() ;
 
 
 	return 0 ;
