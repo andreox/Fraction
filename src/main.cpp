@@ -24,6 +24,8 @@ int main( int argc , char** argv ) {
 	f1 = f1^3 ;
 	f1.Print() ;
 
+	f1.Reduce() ;
+	f1.Print() ;
 
 	return 0 ;
 

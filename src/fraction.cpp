@@ -51,7 +51,7 @@ int Fraction::MCM( int a , int b ) {
 Fraction Fraction::operator+( Fraction f1 ) {
 
 	Fraction f2( 1 , 1 ) ;
-	int MCM = f2.MCM( f1.Denominator , Denominator ) ;
+	int MCM = Fraction::MCM( f1.Denominator , Denominator ) ;
 
 	f2.Denominator = MCM ;
 	f2.Numerator = ((MCM/Denominator)*Numerator) + ((MCM/f1.Denominator)*f1.Numerator) ;
@@ -64,10 +64,10 @@ Fraction Fraction::operator+( Fraction f1 ) {
 Fraction Fraction::operator-(Fraction f1) {
 
 	Fraction f2( 1 , 1 ) ;
-	int MCM = f2.MCM( f1.Denominator , Denominator ) ;
+	int MCM = Fraction::MCM( f1.Denominator , Fraction::Denominator ) ;
 
 	f2.Denominator = MCM ;
-	f2.Numerator = ((MCM/Denominator)*Numerator) - ((MCM/f1.Denominator)*f1.Numerator) ;
+	f2.Numerator = ((MCM/Fraction::Denominator)*Fraction::Numerator) - ((MCM/f1.Denominator)*f1.Numerator) ;
 
 	return f2 ;
 
@@ -77,8 +77,8 @@ Fraction Fraction::operator*(Fraction f1) {
 
 	Fraction f2( 1 , 1 ) ;
 
-	f2.Denominator = f1.Denominator * Denominator ;
-	f2.Numerator = f1.Numerator * Numerator ;
+	f2.Denominator = f1.Denominator * Fraction::Denominator ;
+	f2.Numerator = f1.Numerator * Fraction::Numerator ;
 
 	return f2 ;
 
@@ -88,8 +88,8 @@ Fraction Fraction::operator/(Fraction f1) {
 
 	Fraction f2( 1 , 1 ) ;
 
-	f2.Denominator = Denominator*f1.Numerator ;
-	f2.Numerator = Numerator*f1.Denominator ;
+	f2.Denominator = Fraction::Denominator*f1.Numerator ;
+	f2.Numerator = Fraction::Numerator*f1.Denominator ;
 
 	return f2 ;
 
@@ -98,24 +98,32 @@ Fraction Fraction::operator/(Fraction f1) {
 Fraction Fraction::operator^( int n ) {
 
 	Fraction f2( 1 , 1 ) ;
-	int d = Denominator , num = Numerator ;
+	int d = Fraction::Denominator , num = Fraction::Numerator ;
+	f2.Denominator = d ;
+	f2.Numerator = num ;
 
 	for ( int i = 1 ; i < n ; i++ ) {
 
-		d *= d ;
-		num *= num ;
+		f2.Denominator *= d ;
+		f2.Numerator *= num ;
 
 	}
-
-	f2.Denominator = d ;
-	f2.Numerator = num ;
 
 	return f2 ;
 
 }
 
+void Fraction::Reduce() {
+
+	int MCD = Fraction::MCD(Fraction::Numerator , Fraction::Denominator) ;
+
+	Fraction::Denominator = Fraction::Denominator / MCD ;
+	Fraction::Numerator = Fraction::Numerator / MCD ;
+
+}
+
 void Fraction::Print( ) {
 
-	cout << Numerator << "/" << Denominator << endl ;
+	cout << Fraction::Numerator << "/" << Fraction::Denominator << endl ;
 
 }

@@ -10,6 +10,7 @@ class Fraction {
 		Fraction operator*( Fraction ) ;
 		Fraction operator/( Fraction ) ;
 		Fraction operator^(int) ;
+		void Reduce() ;
 		int MCD( int , int ) ;
 		int MCM( int , int ) ;
 		void Print( ) ;
