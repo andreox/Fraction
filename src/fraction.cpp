@@ -138,6 +138,6 @@ void Fraction::Reduce() {
 
 void Fraction::Print( ) {
 
-	cout << Fraction::Numerator << "/" << Fraction::Denominator << endl ;
+	cout << Fraction::Numerator << "/" << Fraction::Denominator ;
 
 }
